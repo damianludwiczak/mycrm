@@ -1,0 +1,435 @@
+openapi: 3.0.3
+info:
+  title: Swagger ClientStore - OpenAPI 3.0
+  description: ClientStore
+  version: 1.0.11
+servers:
+  - url: https://petstore3.swagger.io/api/v3
+paths:
+  '/client/updateClient':
+    put:
+      tags:
+        - Client
+      summary: Update an existing Client
+      description: Update an existing Client by Id
+      operationId: updateClient
+      parameters:
+        - name: id
+          in: query
+          description: ID of Client to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated Client object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+        required: true
+      responses:
+        '200':
+          description: Client has been added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Client not found
+        '405':
+          description: Validation exception
+  '/client/findAllClient':
+    get:
+      tags:
+        - Client
+      summary: Find all clients
+      description: Find all clients in database
+      operationId: findAll
+      responses:
+        '200':
+          description: Client list has been founded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Client'
+        '500':
+          description: Something went wrong
+          
+  '/client/deleteClient':
+    delete:
+      tags:
+        - Client
+      summary: Delete an Client
+      description: Delete an existing Client by Id
+      operationId: deleteClient
+      parameters:
+        - name: id
+          in: query
+          description: ID of Client to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Client has been deleted
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Client not found
+        '405':
+          description: Validation exception
+  '/client/createClient':
+    post:
+      tags:
+        - Client
+      summary: Create new Client
+      description: Create the Client
+      operationId: createClient
+      requestBody:
+        required: true
+        description: Client object to be saved in database.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+      responses:
+        '200':
+          description: Client has been saved in database.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '400':
+          description: Client already exists in database
+        '409':
+          description: Invalid data
+  '/client/filterClient':
+    get:
+      tags:
+        - Client
+      summary: Filter Clients
+      description: Filter Client by criteria
+      operationId: filterClient
+      parameters:
+        - name: name
+          in: query
+          description: Name of Client to be filtered
+          required: false
+          schema:
+            type: string
+        - name: surname
+          in: query
+          description: surname of Client to be filtered
+          required: false
+          schema:
+            type: string
+        - name: nationality
+          in: query
+          description: nationality of Client to be filtered
+          required: false
+          schema:
+            type: string
+        - name: wageFrom
+          in: query
+          description: wage of Client to be filtered
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: wageTo
+          in: query
+          description: wage of Client to be filtered
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: ageFrom
+          in: query
+          description: age of Client to be filtered
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: ageTo
+          in: query
+          description: age of Client to be filtered
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: companyName
+          in: query
+          description: Name of Client company
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Clients has been founded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Client'
+        '400':
+          description: Invalid criteria
+        '405':
+          description: Validation exception
+  '/company/updateCompany':
+    put:
+      tags:
+        - Company
+      summary: Update an existing Company
+      description: Update an existing Company by Id
+      operationId: updateCompany
+      parameters:
+        - name: id
+          in: query
+          description: ID of Company to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated Company object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Company'
+        required: true
+      responses:
+        '200':
+          description: Company has been added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Company not found
+        '405':
+          description: Validation exception
+  '/company/findAll':
+    get:
+      tags:
+        - Company
+      summary: Find all companies
+      description: Find all companies in database
+      operationId: findAllCompanies
+      responses:
+        '200':
+          description: Companies list has been founded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Company'
+        '500':
+          description: Something went wrong
+  '/company/deleteCompany':
+    delete:
+      tags:
+        - Company
+      summary: Delete an Company
+      description: Delete an existing Company by Id
+      operationId: deleteCompany
+      parameters:
+        - name: id
+          in: query
+          description: ID of Company to be deleted
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Company has been deleted
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Company not found
+        '405':
+          description: Validation exception
+  '/company/createCompany':
+    post:
+      tags:
+        - Company
+      summary: Create new Company
+      description: Create the Company
+      operationId: createCompany
+      requestBody:
+        required: true
+        description: Company object to be saved in database.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Company'
+      responses:
+        '200':
+          description: Company has been saved in database.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+        '400':
+          description: Company already exists in database
+        '409':
+          description: Invalid data
+  '/company/filterCompany':
+    get:
+      tags:
+        - Company
+      summary: Filter Company
+      description: Filter Company by criteria
+      operationId: filterCompany
+      parameters:
+        - name: name
+          in: query
+          description: Name of Company to be filtered
+          required: false
+          schema:
+            type: string
+        - name: yearlyIncomesFrom
+          in: query
+          description: yearlyIncomes of Client to be filtered
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: yearlyIncomesTo
+          in: query
+          description: yearlyIncomes of Client to be filtered
+          required: false
+          schema:
+            type: number
+            format: double
+      responses:
+        '200':
+          description: Companies has been founded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Company'
+        '400':
+          description: Invalid criteria
+        '405':
+          description: Validation exception
+  '/account/createAccount':
+    post:
+      tags:
+        - Account
+      summary: Create new Account
+      description: Create the Account
+      operationId: createAccount
+      requestBody:
+        required: true
+        description: Account object to be saved in database.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+      responses:
+        '200':
+          description: Account has been saved in database.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '400':
+          description: Account already exists in database
+        '409':
+          description: Invalid data
+  '/account/findAll':
+    get:
+      tags:
+        - Account
+      summary: Find all accounts
+      description: Find all accounts in database
+      operationId: findAllAccounts
+      responses:
+        '200':
+          description: Account list has been founded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+        '500':
+          description: Something went wrong      
+          
+components:
+  schemas:
+    Client:
+      type: object
+      required: [ id ]
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+        surname:
+          type: string
+        nationality:
+          type: string
+        age:
+          type: integer
+          format: int32
+          example: 10
+        wage:
+          type: number
+          format: double
+          example: 10000.00
+        companyList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Company'
+    Company:
+      type: object
+      required: [ id ]
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+        yearlyIncomes:
+          type: number
+          format: double
+          example: 1000000.00
+        clientList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Client'
+    Account:
+      type: object
+      required: [ id ]
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        login:
+          type: string
+        password:
+          type: string
+        created:
+          type: string
+          format: date-time
+        lastLogin:
+          type: string
+          format: date-time  
